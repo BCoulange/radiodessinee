@@ -1,23 +1,46 @@
-<h1>Listing soirees</h1>
-
-<table>
-  <tr>
-    <th>Titre</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @soirees.each do |soiree| %>
-  <tr>
-    <td><%= soiree.titre %></td>
-    <td><%= link_to 'Show', soiree %></td>
-    <td><%= link_to 'Edit', edit_soiree_path(soiree) %></td>
-    <td><%= link_to 'Destroy', soiree, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<%- model_class = Soiree -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:titre) %></th>
+      <th><%= model_class.human_attribute_name(:soundcloud_embed) %></th>
+      <th><%= model_class.human_attribute_name(:affiche_file_name) %></th>
+      <th><%= model_class.human_attribute_name(:affiche_content_type) %></th>
+      <th><%= model_class.human_attribute_name(:affiche_file_size) %></th>
+      <th><%= model_class.human_attribute_name(:affiche_updated_at) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @soirees.each do |soiree| %>
+      <tr>
+        <td><%= link_to soiree.id, soiree_path(soiree) %></td>
+        <td><%= soiree.titre %></td>
+        <td><%= soiree.soundcloud_embed %></td>
+        <td><%= soiree.affiche_file_name %></td>
+        <td><%= soiree.affiche_content_type %></td>
+        <td><%= soiree.affiche_file_size %></td>
+        <td><%= soiree.affiche_updated_at %></td>
+        <td><%=l soiree.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_soiree_path(soiree), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      soiree_path(soiree),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Soiree', new_soiree_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_soiree_path,
+            :class => 'btn btn-primary' %>
