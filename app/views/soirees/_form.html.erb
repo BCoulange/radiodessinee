@@ -1,0 +1,21 @@
+<%= form_for(@soiree) do |f| %>
+  <% if @soiree.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@soiree.errors.count, "error") %> prohibited this soiree from being saved:</h2>
+
+      <ul>
+      <% @soiree.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :titre %><br />
+    <%= f.text_field :titre %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
