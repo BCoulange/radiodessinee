@@ -1,4 +1,4 @@
-<%= form_for @soiree, :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for @soiree, :html => { :multipart => true, :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
     <%= f.label :titre, :class => 'control-label' %>
     <div class="controls">
@@ -12,30 +12,8 @@
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :affiche_file_name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :affiche_file_name, :class => 'text_field' %>
-    </div>
+<%= f.file_field :affiche %>
   </div>
-  <div class="control-group">
-    <%= f.label :affiche_content_type, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :affiche_content_type, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :affiche_file_size, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :affiche_file_size, :class => 'number_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :affiche_updated_at, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.datetime_select :affiche_updated_at, :class => 'datetime_select' %>
-    </div>
-  </div>
-
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
