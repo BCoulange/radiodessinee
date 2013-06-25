@@ -11,13 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130625170723) do
+ActiveRecord::Schema.define(:version => 20130625172101) do
 
   create_table "soirees", :force => true do |t|
     t.string   "titre"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.string   "soundcloud_embed"
+    t.string   "affiche_file_name"
+    t.string   "affiche_content_type"
+    t.integer  "affiche_file_size"
+    t.datetime "affiche_updated_at"
   end
 
 end
